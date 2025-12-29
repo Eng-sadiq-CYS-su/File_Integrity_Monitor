@@ -26,16 +26,16 @@ An advanced, high-performance desktop security utility designed to monitor file 
 ## 📸 Application Showcases
 
 ### 🏠 Main Dashboard
-![Main Window](assets/main_win.png)
+![Main Window](./assets/main_win.png)
 
 ### 🔍 Integrity Scan Results
-![Scan Results](assets/results.png)
+![Scan Results](./assets/results.png)
 
 ### 🛠️ Interactive Alerts Management
-![Alerts Management](assets/alerts.png)
+![Alerts Management](./assets/alerts.png)
 
 ### 📊 Executive PDF Reports (with Arabic Support)
-![PDF Report Preview](assets/report_preview.png)
+![PDF Report Preview](./assets/report_preview.png)
 
 ---
 
