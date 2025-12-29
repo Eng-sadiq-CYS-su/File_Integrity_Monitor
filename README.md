@@ -26,16 +26,16 @@ An advanced, high-performance desktop security utility designed to monitor file 
 ## 📸 Application Showcases
 
 ### 🏠 Main Dashboard
-![Main Window](./assets/main_win.png)
+![Main Window](https://github.com/Eng-sadiq-CYS-su/File_Integrity_Monitor/raw/main/assets/main_win.png)
 
 ### 🔍 Integrity Scan Results
-![Scan Results](./assets/results.png)
+![Scan Results](https://github.com/Eng-sadiq-CYS-su/File_Integrity_Monitor/raw/main/assets/results.png)
 
 ### 🛠️ Interactive Alerts Management
-![Alerts Management](./assets/alerts.png)
+![Alerts Management](https://github.com/Eng-sadiq-CYS-su/File_Integrity_Monitor/raw/main/assets/alerts.png)
 
 ### 📊 Executive PDF Reports (with Arabic Support)
-![PDF Report Preview](./assets/report_preview.png)
+![PDF Report Preview](https://github.com/Eng-sadiq-CYS-su/File_Integrity_Monitor/raw/main/assets/report_preview.png)
 
 ---
 
