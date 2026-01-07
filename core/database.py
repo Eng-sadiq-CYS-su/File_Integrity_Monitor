@@ -8,6 +8,10 @@ class Database:
     """
     def __init__(self, db_path="data/monitor.db"):
         self.db_path = db_path
+        # Ensure directory exists
+        db_dir = os.path.dirname(self.db_path)
+        if db_dir:
+            os.makedirs(db_dir, exist_ok=True)
         self._prepare_database()
 
     def _get_connection(self):
@@ -27,6 +31,7 @@ class Database:
                 timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
                 file_name TEXT NOT NULL,
                 status TEXT NOT NULL,
+                actor TEXT,
                 is_read INTEGER DEFAULT 0
             )''',
             '''CREATE TABLE IF NOT EXISTS backups (
@@ -59,18 +64,23 @@ class Database:
             
             # Handling Schema Migrations
             try:
+                db.execute('SELECT actor FROM alerts LIMIT 1')
+            except sqlite3.OperationalError:
+                db.execute('ALTER TABLE alerts ADD COLUMN actor TEXT')
+
+            try:
                 db.execute('SELECT is_read FROM alerts LIMIT 1')
             except sqlite3.OperationalError:
                 db.execute('ALTER TABLE alerts ADD COLUMN is_read INTEGER DEFAULT 0')
 
     # --- Alert Management ---
 
-    def add_alert(self, file_name, status):
+    def add_alert(self, file_name, status, actor="Unknown"):
         with self._get_connection() as conn:
-            conn.execute('INSERT INTO alerts (file_name, status, is_read) VALUES (?, ?, 0)', (file_name, status))
+            conn.execute('INSERT INTO alerts (file_name, status, actor, is_read) VALUES (?, ?, ?, 0)', (file_name, status, actor))
 
     def get_alerts(self, limit=100, unread_only=False):
-        query = 'SELECT timestamp, file_name, status FROM alerts'
+        query = 'SELECT timestamp, file_name, status, actor FROM alerts'
         if unread_only:
             query += ' WHERE is_read = 0'
         query += ' ORDER BY timestamp DESC LIMIT ?'

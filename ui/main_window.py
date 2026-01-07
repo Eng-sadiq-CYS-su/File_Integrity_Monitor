@@ -21,7 +21,8 @@ def resource_path(relative_path):
         # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
     except Exception:
-        base_path = os.path.abspath(".")
+        # Avoid os.path.abspath(".") as it depends on CWD (which is bad on startup)
+        base_path = os.path.dirname(os.path.abspath(sys.argv[0]))
 
     return os.path.join(base_path, relative_path)
 
@@ -90,17 +91,27 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("File Integrity Monitor")
         self.setMinimumSize(800, 600)
         
+        # 1. Ensure Application Root and Data Directory Exist
+        # This is critical to avoid [WinError 5] Access Denied
+        self.app_root = os.path.dirname(os.path.abspath(sys.argv[0]))
+        self.data_dir = os.path.join(self.app_root, "data")
+        
+        if not os.path.exists(self.data_dir):
+            try:
+                os.makedirs(self.data_dir, exist_ok=True)
+            except Exception as e:
+                print(f"Failed to create data directory: {e}")
+
         # State
         self.selected_directory = ""
-        self.baseline_file = os.path.join("data", "baseline.json")
+        self.baseline_file = os.path.join(self.data_dir, "baseline.json")
         self.current_results = []
         self.monitor = None
         self.is_protected = False
-        self.backup_mgr = BackupManager()
         
-        self.db = Database()
-        if not os.path.exists("data"):
-            os.makedirs("data")
+        # 2. Initialize Core Components after root folders exist
+        self.db = Database(os.path.join(self.data_dir, "monitor.db"))
+        self.backup_mgr = BackupManager(os.path.join(self.data_dir, "backups"))
 
         self.init_ui()
         self.init_tray()
@@ -392,18 +403,20 @@ class MainWindow(QMainWindow):
             d_layout.addWidget(header_notice)
 
         table = QTableWidget()
-        table.setColumnCount(5)
-        table.setHorizontalHeaderLabels(["Time", "Status", "File", "Keep Change", "Undo Change"])
+        table.setColumnCount(6)
+        table.setHorizontalHeaderLabels(["Time", "Status", "File", "Actor / المتسبب", "Keep Change", "Undo Change"])
         table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        table.horizontalHeader().setSectionResizeMode(3, QHeaderView.ResizeToContents)
         table.setEditTriggers(QAbstractItemView.NoEditTriggers)
         
         alerts = self.db.get_alerts(unread_only=unread_only)
         table.setRowCount(len(alerts))
         
-        for row, (ts, file, status) in enumerate(alerts):
+        for row, (ts, file, status, actor) in enumerate(alerts):
             table.setItem(row, 0, QTableWidgetItem(ts))
             table.setItem(row, 1, QTableWidgetItem(status))
             table.setItem(row, 2, QTableWidgetItem(file))
+            table.setItem(row, 3, QTableWidgetItem(actor or "Unknown"))
             
             # Action Buttons
             allow_btn = QPushButton("Allow / سماح")
@@ -428,8 +441,8 @@ class MainWindow(QMainWindow):
             if "Deleted" in status:
                 allow_btn.setText("Acknowledge")
             
-            table.setCellWidget(row, 3, allow_btn)
-            table.setCellWidget(row, 4, restore_btn)
+            table.setCellWidget(row, 4, allow_btn)
+            table.setCellWidget(row, 5, restore_btn)
             
         d_layout.addWidget(table)
         

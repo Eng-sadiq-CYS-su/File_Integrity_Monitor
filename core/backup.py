@@ -6,8 +6,7 @@ from datetime import datetime
 class BackupManager:
     def __init__(self, backup_dir="data/backups"):
         self.backup_dir = backup_dir
-        if not os.path.exists(self.backup_dir):
-            os.makedirs(self.backup_dir)
+        os.makedirs(self.backup_dir, exist_ok=True)
 
     def create_backup(self, file_path, original_root):
         """Creates a versioned backup of the file."""
