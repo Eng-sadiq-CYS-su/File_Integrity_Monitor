@@ -99,7 +99,7 @@ pyinstaller --noconsole --onefile --name "FileIntegrityMonitor" --icon "assets/i
 **صادق الموبدي (Sadiq Al-Mubdi)**
 > *مهندس أمن سيبراني ومطور أنظمة متقدمة*
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin)](https://github.com/Eng-sadiq-CYS-su) 
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/sadiq-al-mubdi-3b8389387/) 
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=flat-square&logo=github)](https://github.com/Eng-sadiq-CYS-su)
 
 ---
