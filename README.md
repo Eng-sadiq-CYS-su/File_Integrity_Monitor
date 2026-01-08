@@ -1,5 +1,8 @@
 # 🛡️ File Integrity Monitor: منصة التحقيق الجنائي الرقمي المتقدمة
 
+<p align="center">
+  <img src="assets/banner.png" alt="Project Banner" width="800">
+</p>
 
 > **نظام متطور لمراقبة سلامة الملفات والاستجابة الفورية للتهديدات برؤية أمنية عميقة.**
 
@@ -22,21 +25,88 @@
 
 ---
 
-## 📸 استكشف المنصة
+## 🏗️ التصميم المنطقي للنظام (System Logic Drawing)
 
-````carousel
-![الواجهة الرئيسية](assets/main_window.png)
-<!-- slide -->
-![تحليل البيانات](assets/scan_results.png)
-<!-- slide -->
-![إدارة التنبيهات](assets/alerts_management.png)
-<!-- slide -->
-![التقارير الاحترافية](assets/pdf_report.png)
-````
+بطلب من المستخدم، إليك "رسم" يوضح كيف تتدفق البيانات داخل النظام من لحظة التغيير وحتى إصدار التنبيه:
+
+```mermaid
+graph TD
+    %% Define Styles
+    classDef security fill:#f96,stroke:#333,stroke-width:2px;
+    classDef storage fill:#69f,stroke:#333,stroke-width:2px;
+    classDef forensic fill:#f66,stroke:#high,stroke-width:4px;
+
+    Folder["📁 المجلد المراقب"] -- "تغيير في الملف" --> Watchdog["⚖️ محرك Watchdog"]
+    Watchdog -- "حدث (تعديل/حذف)" --> Intelligence["🧠 محرك الذكاء الجنائي"]
+    
+    subgraph "داخل محرك الذكاء الجنائي"
+        Intelligence --> Actor["🕵️ كاشف المتسبب (Actor)"]
+        Intelligence --> Hasher["🔢 مدقق البصمة (SHA-256)"]
+        Actor -- "من البرنامج؟" --> Process["psutil: explorer.exe..."]
+    end
+
+    Process --> DB[("🗄️ قاعدة البيانات (SQLite)")]
+    Hasher --> DB
+    
+    DB --> UI["🖥️ واجهة المستخدم (PyQt5)"]
+    UI -- "طلب استعادة" --> Backup["⏪ مدير النسخ الاحتياطي"]
+    Backup -- "استبدال الملف التالف" --> Folder
+
+    class Intelligence,Actor forensic;
+    class DB storage;
+    class Watchdog security;
+```
 
 ---
 
-## 🚀 الميزات المتقدمة
+## 🎨 رسم تخطيطي للواجهة (UI Mockup Drawing)
+
+بما أنك طلبت "رسم" التوثيق، إليك تمثيل مرئي لهيكل الواجهة الرئيسية للبرنامج باستخدام الكود:
+
+```mermaid
+graph TD
+    subgraph "نافذة البرنامج الرئيسية (Main Dashboard)"
+        Header["🛡️ File Integrity Monitor (Header)"]
+        
+        subgraph "شريط الأدوات (Control Panel)"
+            Btn1["▶️ Start Protection"]
+            Btn2["🔔 View Alerts"]
+            Btn3["📄 Export PDF"]
+        end
+
+        subgraph "لوحة العمليات (Operations)"
+            Folder["📂 Select Directory: C:/Users/..."]
+            Progress["▓▓▓▓▓▓░░░░ 60% (Progress Bar)"]
+        end
+
+        subgraph "جدول البيانات (Results Table)"
+            Row1["📄 config.sys | 🔴 Modified | Actor: notepad.exe"]
+            Row2["📄 secret.db  | ❌ Deleted  | Actor: Unknown"]
+            Row3["📄 script.py  | 🟡 Created  | Actor: python.exe"]
+        end
+        
+        Header --> Btn1
+        Btn1 --> Folder
+        Folder --> Progress
+        Progress --> Row1
+    end
+```
+
+---
+
+## 📸 استكشف المنصة (Screenshots)
+
+| الواجهة الرئيسية | تحليل البيانات |
+| :---: | :---: |
+| ![الواجهة الرئيسية](assets/main_window.png) | ![تحليل البيانات](assets/scan_results.png) |
+
+| إدارة التنبيهات | التقارير الاحترافية (PDF) |
+| :---: | :---: |
+| ![إدارة التنبيهات](assets/alerts_management.png) | ![التقارير الاحترافية](assets/pdf_report.png) |
+
+---
+
+## 🚀 الميزات المتقدمة بالتفصيل
 
 ### 🧠 كشف المتسبب (Forensic Actor Discovery)
 بخلاف أنظمة المراقبة التقليدية، تقوم هذه المنصة بتحديد **مصدر** التغيير. عبر تتبع مسارات النظام في لحظة التعديل، يتم ربط الحدث بالبرنامج المسؤول (مثل: `explorer.exe` أو أي سكريبت مشبوه).
@@ -48,26 +118,6 @@
 توليد تقارير جاهزة للتدقيق الأمني تشمل:
 - **رسوم بيانية تفاعلية**: ملخص بصري لحالة النظام الأمنية.
 - **دعم اللغة العربية**: تنسيق مثالي للمسارات والنصوص العربية داخل التقارير.
-- **تحليلات إحصائية**: تحديد المجلدات الأكثر استهدفاً أو عُرضة للتغيير.
-
----
-
-## 🏗️ البنية التقنية (Architecture)
-
-```mermaid
-graph TD
-    A[نظام الملفات] -->|أحداث المراقبة| B(المراقب الفوري)
-    B -->|التقاط الحدث| C{محرك التحقيق}
-    C -->|تحديد العملية| D[متتبع العمليات Actor]
-    C -->|حساب البصمة| E[مُشفر SHA-256]
-    D --> F[خدمة قاعدة البيانات]
-    E --> F
-    F -->|الحفظ الاستمراري| G[(تخزين SQLite)]
-    H[واجهة المستخدم] -->|أوامر التحكم| I[المتحكم الرئيسي]
-    I -->|استعلام| F
-    I -->|توليد| J[مُصدر تقارير PDF]
-    K[مدير النسخ الاحتياطي] -->|لقطات أمان| A
-```
 
 ---
 
