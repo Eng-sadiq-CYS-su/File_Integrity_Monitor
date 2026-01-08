@@ -1,7 +1,7 @@
 # 🛡️ File Integrity Monitor: منصة التحقيق الجنائي الرقمي المتقدمة
 
 <p align="center">
-  <img src="assets/banner.png" alt="Project Banner" width="800">
+  <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" alt="File Integrity Monitor Banner" width="100%">
 </p>
 
 > **نظام متطور لمراقبة سلامة الملفات والاستجابة الفورية للتهديدات برؤية أمنية عميقة.**
@@ -27,19 +27,20 @@
 
 ## 🏗️ التصميم المنطقي للنظام (System Logic Drawing)
 
-بطلب من المستخدم، إليك "رسم" يوضح كيف تتدفق البيانات داخل النظام من لحظة التغيير وحتى إصدار التنبيه:
+يوضح الرسم التالي تدفق البيانات الاستخباراتي داخل النظام من لحظة وقوع الحدث وحتى اتخاذ الإجراء الأمني:
 
 ```mermaid
 graph TD
     %% Define Styles
-    classDef security fill:#f96,stroke:#333,stroke-width:2px;
-    classDef storage fill:#69f,stroke:#333,stroke-width:2px;
-    classDef forensic fill:#f66,stroke:#high,stroke-width:4px;
+    classDef security fill:#001f3f,stroke:#0074D9,stroke-width:2px,color:#fff;
+    classDef storage fill:#2ECC40,stroke:#3D9970,stroke-width:2px,color:#fff;
+    classDef forensic fill:#FF4136,stroke:#85144b,stroke-width:4px,color:#fff;
+    classDef ui fill:#7FDBFF,stroke:#0074D9,stroke-width:1px,color:#000;
 
     Folder["📁 المجلد المراقب"] -- "تغيير في الملف" --> Watchdog["⚖️ محرك Watchdog"]
     Watchdog -- "حدث (تعديل/حذف)" --> Intelligence["🧠 محرك الذكاء الجنائي"]
     
-    subgraph "داخل محرك الذكاء الجنائي"
+    subgraph "Forensic Analysis Cell"
         Intelligence --> Actor["🕵️ كاشف المتسبب (Actor)"]
         Intelligence --> Hasher["🔢 مدقق البصمة (SHA-256)"]
         Actor -- "من البرنامج؟" --> Process["psutil: explorer.exe..."]
@@ -55,34 +56,35 @@ graph TD
     class Intelligence,Actor forensic;
     class DB storage;
     class Watchdog security;
+    class UI,Folder ui;
 ```
 
 ---
 
 ## 🎨 رسم تخطيطي للواجهة (UI Mockup Drawing)
 
-بما أنك طلبت "رسم" التوثيق، إليك تمثيل مرئي لهيكل الواجهة الرئيسية للبرنامج باستخدام الكود:
+توضيح مرئي لهيكل الواجهة الاحترافية التي تم تطويرها باستخدام PyQt5:
 
 ```mermaid
 graph TD
     subgraph "نافذة البرنامج الرئيسية (Main Dashboard)"
         Header["🛡️ File Integrity Monitor (Header)"]
         
-        subgraph "شريط الأدوات (Control Panel)"
-            Btn1["▶️ Start Protection"]
-            Btn2["🔔 View Alerts"]
-            Btn3["📄 Export PDF"]
+        subgraph "شريط الأدوات الأمني (Security Control Panel)"
+            Btn1["▶️ Start Protection / بدء الحماية"]
+            Btn2["🔔 View Alerts / التنبيهات"]
+            Btn3["📄 Export PDF / تصدير تقرير"]
         end
 
-        subgraph "لوحة العمليات (Operations)"
-            Folder["📂 Select Directory: C:/Users/..."]
-            Progress["▓▓▓▓▓▓░░░░ 60% (Progress Bar)"]
+        subgraph "مؤشرات الحالة (Status Indicators)"
+            Folder["📂 Directory: C:/Users/Sadiq/Project"]
+            Progress["▓▓▓▓▓▓▓▓░░ 80% (Scan Progress)"]
         end
 
-        subgraph "جدول البيانات (Results Table)"
-            Row1["📄 config.sys | 🔴 Modified | Actor: notepad.exe"]
-            Row2["📄 secret.db  | ❌ Deleted  | Actor: Unknown"]
-            Row3["📄 script.py  | 🟡 Created  | Actor: python.exe"]
+        subgraph "سجل الأحداث الجنائي (Forensic Log Table)"
+            Row1["📄 critical_file.dll | 🔴 Modified | Actor: notepad.exe"]
+            Row2["📄 system_log.txt   | ❌ Deleted  | Actor: Unknown"]
+            Row3["📄 malware_scan.py | 🟡 Created  | Actor: python.exe"]
         end
         
         Header --> Btn1
@@ -94,19 +96,7 @@ graph TD
 
 ---
 
-## 📸 استكشف المنصة (Screenshots)
-
-| الواجهة الرئيسية | تحليل البيانات |
-| :---: | :---: |
-| ![الواجهة الرئيسية](assets/main_window.png) | ![تحليل البيانات](assets/scan_results.png) |
-
-| إدارة التنبيهات | التقارير الاحترافية (PDF) |
-| :---: | :---: |
-| ![إدارة التنبيهات](assets/alerts_management.png) | ![التقارير الاحترافية](assets/pdf_report.png) |
-
----
-
-## 🚀 الميزات المتقدمة بالتفصيل
+## 🚀 الميزاث المتقدمة بالتفصيل
 
 ### 🧠 كشف المتسبب (Forensic Actor Discovery)
 بخلاف أنظمة المراقبة التقليدية، تقوم هذه المنصة بتحديد **مصدر** التغيير. عبر تتبع مسارات النظام في لحظة التعديل، يتم ربط الحدث بالبرنامج المسؤول (مثل: `explorer.exe` أو أي سكريبت مشبوه).
