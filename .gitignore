@@ -1,0 +1,27 @@
+# Python temporary files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv/
+venv/
+ENV/
+
+# Project Data (Private)
+data/
+*.db
+*.json
+*.pdf
+
+# Build and Distribution
+build/
+dist/
+*.spec
+
+# IDE Settings
+.idea/
+.vscode/
+
+# Assets Preview (Keep these as they are needed for README)
+# assets/*.png is fine 

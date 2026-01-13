@@ -1,0 +1,142 @@
+# 🛡️ File Integrity Monitor
+## منصة التحقيق الجنائي الرقمي المتقدمة | Advanced Digital Forensics Platform
+
+<div align="center">
+  <img src="assets/banner.png" alt="File Integrity Monitor Banner" width="100%">
+  <br><br>
+  
+  [![Python Version](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python)](https://www.python.org/)
+  [![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?style=for-the-badge&logo=windows)](https://www.microsoft.com/windows)
+  [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+</div>
+
+---
+
+## 🌟 نظرة عامة | Overview
+
+**File Integrity Monitor** هو نظام أمني متطور مصمم خصيصاً لفرق الأمن السيبراني والتحقيق الجنائي الرقمي. يقوم النظام بمراقبة ملفات النظام الحساسة في الوقت الفعلي، واكتشاف أي تعديلات غير مصرح بها بدقة متناهية، مع تحديد "المتسبب" (Actor) واستعادة الملفات المتضررة فوراً.
+
+> **Advanced Real-time Integrity Monitoring System with Forensic Capabilities.**
+
+---
+
+## 📸 جولة في النظام | Visual Tour
+
+### 🖥️ لوحة القيادة الرئيسية (Main Dashboard)
+واجهة تحكم مركزية تعرض حالة المراقبة الحية، مع رسوم بيانية تفاعلية لتوزيع الملفات وحالة النظام.
+<div align="center">
+  <img src="assets/main_window.png" alt="Main Dashboard" width="800px" style="border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+</div>
+
+<br>
+
+### 🚨 مركز إدارة التنبيهات (Alerts Management)
+سجل دقيق لكل عملية (تعديل، حذف، إنشاء) مع تحديد هوية البرنامج المسؤول (Process Name/ID) والمسار الكامل.
+<div align="center">
+  <img src="assets/alerts_management.png" alt="Alerts Management" width="800px" style="border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+</div>
+
+<br>
+
+### 📄 التقارير الجنائية (Forensic Reports)
+توليد تقارير PDF احترافية ثنائية اللغة (عربي/إنجليزي) تتضمن تحليلاً شاملاً للأحداث، جاهزة للتقديم للجهات الرقابية.
+<div align="center">
+  <img src="assets/report_mockup.png" alt="Forensic Report" width="600px" style="border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+</div>
+
+---
+
+## 🚀 الميزات الأساسية | Key Features
+
+| الميزة (Feature) | الوصف (Description) |
+| :--- | :--- |
+| **🔍 Real-time Monitoring** | مراقبة فورية باستخدام خوارزميات `Watchdog` المتطورة لاكتشاف التغييرات في أجزاء من الثانية. |
+| **🕵️ Forensic Actor** | ميزة فريدة لتحديد **البرنامج** أو **المستخدم** الذي قام بالتعديل (Process Tracking). |
+| **🛡️ Ransomware Protection** | حماية ضد برمجيات الفدية عبر اكتشاف التشفير الجماعي السريع للملفات. |
+| **⏪ Auto-Restore** | إمكانية "العودة بالزمن" واسترجاع النسخ الأصلية للملفات التي تم العبث بها. |
+| **📊 Smart Reporting** | تقارير تحليلية شاملة بصيغة PDF مع رسوم بيانية وتفاصيل دقيقة. |
+
+---
+
+## 🏗️ هيكلية النظام | System Architecture
+
+يوضح المخطط التالي تدفق البيانات من لحظة اكتشاف الحدث وحتى المعالجة والاستعادة:
+
+```mermaid
+graph TD
+    %% Styles
+    classDef monitor fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff;
+    classDef engine fill:#004d99,stroke:#0066cc,stroke-width:2px,color:#fff;
+    classDef db fill:#2d862d,stroke:#33cc33,stroke-width:2px,color:#fff;
+    classDef ui fill:#4d0099,stroke:#6600cc,stroke-width:2px,color:#fff;
+
+    Target[("📁 Target System")] --> Monitor["👁️ Watchdog Engine"]
+    Monitor -- "Event Detected" --> Analysis["🧠 Forensic Analysis Core"]
+    
+    subgraph "Forensic Processing"
+    Analysis --> Actor["🕵️ Identify Actor (Process)"]
+    Analysis --> Hash["🔢 SHA-256 Hashing"]
+    end
+    
+    Actor --> Database[("🗄️ Secure Database")]
+    Hash --> Database
+    
+    Database --> Dashboard["🖥️ Admin Dashboard"]
+    Dashboard -- "Restore Command" --> Recovery["⏪ Restoration Module"]
+    Recovery --> Target
+
+    class Monitor,Target monitor;
+    class Analysis,Actor,Hash engine;
+    class Database db;
+    class Dashboard,Recovery ui;
+```
+
+---
+
+## 🛠️ التثبيت والتشغيل | Installation
+
+### متطلبات التشغيل (Requirements)
+- Python 3.9+
+- Windows 10/11
+
+### 1. استنساخ المستودع (Clone)
+```bash
+git clone https://github.com/Eng-sadiq-CYS-su/File_Integrity_Monitor.git
+cd File_Integrity_Monitor
+```
+
+### 2. إعداد البيئة الافتراضية (Setup)
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### 3. تشغيل النظام (Run)
+```bash
+python app.py
+```
+
+---
+
+## 👤 عن المطور | About Developer
+
+**م. صادق الموبدي (Eng. Sadiq Al-Mubdi)**
+> *Cybersecurity Engineer & Systems Architect*
+
+متخصص في بناء الأنظمة الأمنية الدفاعية وتطوير أدوات التحقيق الرقمي.
+
+<div align="center">
+  <a href="https://github.com/Eng-sadiq-CYS-su">
+    <img src="https://img.shields.io/badge/GitHub-Eng--sadiq--CYS--su-181717?style=for-the-badge&logo=github" alt="GitHub" />
+  </a>
+  <a href="https://www.linkedin.com/in/sadiq-al-mubdi-3b8389387/">
+    <img src="https://img.shields.io/badge/LinkedIn-Sadiq_Al--Mubdi-0A66C2?style=for-the-badge&logo=linkedin" alt="LinkedIn" />
+  </a>
+</div>
+
+---
+
+<p align="center">
+  Made with ❤️ for a Safer Digital World.
+</p>
