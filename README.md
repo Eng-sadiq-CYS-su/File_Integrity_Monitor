@@ -1,4 +1,4 @@
-# 🛡️ File Integrity Monitor
+# 🛡️ File Integrity Monitor (FIM)
 ## منصة التحقيق الجنائي الرقمي المتقدمة | Advanced Digital Forensics Platform
 
 <div align="center">
