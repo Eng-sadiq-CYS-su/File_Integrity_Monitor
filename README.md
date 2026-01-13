@@ -145,5 +145,5 @@ python app.py
 ---
 
 <p align="center">
-  Made with Eng #Sadiq# for a Safer Digital World.
+  Made with Eng Sadiq 💖🧠 for a Safer Digital World.
 </p>
