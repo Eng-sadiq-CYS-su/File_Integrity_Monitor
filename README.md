@@ -2,7 +2,8 @@
 ## منصة التحقيق الجنائي الرقمي المتقدمة | Advanced Digital Forensics Platform
 
 <div align="center">
-  <img src="assets/banner.png" alt="File Integrity Monitor Banner" width="100%">
+  <img width="1024" height="827" alt="pdf_report" src="https://github.com/user-attachments/assets/cc760685-d2d3-4af5-84b7-3eb6bae1b0d2" />
+
   <br><br>
   
   [![Python Version](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python)](https://www.python.org/)
@@ -27,7 +28,7 @@
 ### 🖥️ لوحة القيادة الرئيسية (Main Dashboard)
 واجهة تحكم مركزية تعرض حالة المراقبة الحية، مع رسوم بيانية تفاعلية لتوزيع الملفات وحالة النظام.
 <div align="center">
-  <img src="assets/main_window.png" alt="Main Dashboard" width="800px" style="border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+<img width="1024" height="364" alt="main_window" src="https://github.com/user-attachments/assets/d1bfb653-b9a9-4759-8a5b-93a5201f19e6" />
 </div>
 
 <br>
@@ -35,7 +36,7 @@
 ### 🚨 مركز إدارة التنبيهات (Alerts Management)
 سجل دقيق لكل عملية (تعديل، حذف، إنشاء) مع تحديد هوية البرنامج المسؤول (Process Name/ID) والمسار الكامل.
 <div align="center">
-  <img src="assets/alerts_management.png" alt="Alerts Management" width="800px" style="border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+<img width="897" height="533" alt="alerts_management" src="https://github.com/user-attachments/assets/704bfca9-b46b-4c2e-abbb-1c3460cdaf9f" />
 </div>
 
 <br>
@@ -43,7 +44,11 @@
 ### 📄 التقارير الجنائية (Forensic Reports)
 توليد تقارير PDF احترافية ثنائية اللغة (عربي/إنجليزي) تتضمن تحليلاً شاملاً للأحداث، جاهزة للتقديم للجهات الرقابية.
 <div align="center">
-  <img src="assets/report_mockup.png" alt="Forensic Report" width="600px" style="border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+<img width="1024" height="827" alt="pdf_report" src="https://github.com/user-attachments/assets/926f4156-5a06-4cac-8531-0974e54dd46d" />
+  <br>
+<img width="1024" height="827" alt="pdf_report2" src="https://github.com/user-attachments/assets/d94f40f1-6bce-473d-afac-f5728956514c" />
+
+
 </div>
 
 ---
@@ -140,5 +145,5 @@ python app.py
 ---
 
 <p align="center">
-  Made with ❤️ for a Safer Digital World.
+  Made with Eng #Sadiq# for a Safer Digital World.
 </p>
