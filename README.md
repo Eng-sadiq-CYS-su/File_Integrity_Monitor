@@ -18,6 +18,8 @@
 
 > **Advanced Real-time Integrity Monitoring System with Forensic Capabilities.**
 
+[📘 **دليل المستخدم وتشغيل النظام | User Manual & Training Guide**](USER_MANUAL.md)
+
 ---
 
 ## 📸 جولة في النظام | Visual Tour
